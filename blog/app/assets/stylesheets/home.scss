@@ -1,3 +1,34 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1 {
+  text-align: center;
+}
+
+.record {
+  background: silver;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-bottom: 30px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .name {
+    font: 30px rw-extrabold, Raleway, sans-serif;
+    padding-bottom: 20px;
+  }
+
+  img {
+    width: 200px;
+  }
+}
+
+.record::after {
+    display: block;
+    content: '';
+    clear: both;
+}

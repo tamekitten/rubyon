@@ -6,10 +6,36 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
+    <div class="container">
+      <div class="header">
+        <div class="title">Blog</div>
+
+        <div class="social">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="menu">
+        <a class="item" href="<%= url_for(action: 'index',    controller: 'home') %>">Home</a>
+        <a class="item" href="<%= url_for(action: 'about_me', controller: 'home') %>">About me</a>
+      </div>
+
     <%= yield %>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>&copy; RubyOn, 2019</p>
+      </div>
+    </div>
   </body>
 </html>
