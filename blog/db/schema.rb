@@ -10,27 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_19_161816) do
+ActiveRecord::Schema.define(version: 2019_01_21_221131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.text "body"
-    t.bigint "user_id"
-    t.bigint "post_id"
-    t.boolean "visible"
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.boolean "visible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "marks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
+    t.integer "mark", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_marks_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_marks_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_marks_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
-    t.text "body"
-    t.bigint "user_id"
-    t.boolean "visible"
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.boolean "visible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_posts_on_title", unique: true
@@ -38,11 +49,11 @@ ActiveRecord::Schema.define(version: 2019_01_19_161816) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.boolean "moderator", default: false
-    t.boolean "creator", default: false
-    t.boolean "banned", default: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.boolean "moderator", default: false, null: false
+    t.boolean "creator", default: false, null: false
+    t.boolean "banned", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -51,5 +62,7 @@ ActiveRecord::Schema.define(version: 2019_01_19_161816) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "marks", "posts"
+  add_foreign_key "marks", "users"
   add_foreign_key "posts", "users"
 end

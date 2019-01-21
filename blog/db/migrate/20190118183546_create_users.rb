@@ -1,11 +1,11 @@
 class CreateUsers < ActiveRecord::Migration[5.2]
   def change
     create_table :users do |t|
-      t.string :name
-      t.string :email
-      t.boolean :moderator, default:false
-      t.boolean :creator, default:false
-      t.boolean :banned, default:false
+      t.string :name, null: false
+      t.string :email, null: false
+      t.boolean :moderator, default: false, null: false
+      t.boolean :creator, default: false, null: false
+      t.boolean :banned, default: false, null: false
 
       t.timestamps
     end
