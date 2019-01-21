@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Blog
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" rel="stylesheet" /
+    = javascript_include_tag 'application'
+  body
+    .container
+      .header
+        .title Blog
+        .social
+          a href="#" 
+            i.fab.fa-facebook-f
+          a href="#" 
+            i.fab.fa-twitter
+          a href="#" 
+            i.fab.fa-youtube
+          a href="#" 
+            i.fab.fa-pinterest-p
+          a href="#" 
+            i.fab.fa-instagram
+      .menu
+        a.item href=url_for(action: 'index')    Home
+        a.item href=url_for(action: 'about_me') About me
+      = yield
+    .footer
+      .container
+        p © RubyOn, 2019

@@ -15,7 +15,7 @@
  */
 @font-face {
     font-family: rw-extrabold;
-    src: url(<%= asset_path 'Raleway-ExtraBold.ttf' %>);
+    src: url(font-path('Raleway-ExtraBold.ttf'));
 }
 
 html {
@@ -24,6 +24,10 @@ html {
 }
 body {
     margin-bottom: 30px;
+}
+
+h1 {
+  text-align: center;
 }
 
 .container {
@@ -38,70 +42,72 @@ body {
 }
 
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 30px;
-    width: 100%;
-    overflow: hidden;
-}
-.footer .container p {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 30px;
+  width: 100%;
+  overflow: hidden;
+
+  .container p {
     background-color: dimgray;
     color: white;
     text-align: right;
     padding: 7px;
     margin: 0;
     height: 30px;
+  }
 }
 
 .header {
-    height: 400px;
-    background: url("<%= asset_path 'cover.jpg' %>") no-repeat, #abeafa;
-    background-size: cover;
-}
-.header .title {
+  height: 400px;
+  background: url(asset-path('cover.jpg')) no-repeat, #abeafa;
+  background-size: cover;
+
+  .title {
     position: relative;
     top: 244px;
     left: 100px;
     font: 48px rw-extrabold, Raleway, sans-serif;
     color: #f8f8f8;
     line-height: 34px;
-}
-.header .social {
+  }
+
+  .social {
     font-size: 16px;
     position: absolute;
     top: 50px;
     right: 400px;
-}
-.header .social a {
-    padding-left: 15px;
-    text-decoration: none;
-    color: white;
+
+    a {
+      padding-left: 15px;
+      text-decoration: none;
+      color: white;
+    }
+  }
 }
 
 .menu {
-    margin: 0 auto;
-    padding-top: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.menu .item {
-  display: block;
-  border: 1px solid black;
-  border-radius: 6px;
-  text-align: center;
-  background: dimgray;
-  flex: 1;
-  text-decoration: none;
-  color: white;
-  padding: 5px;
-}
-.menu .item:hover {
-  background: black;
-}
+  margin: 0 auto;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 
-h1 {
-  text-align: center;
+  .item {
+    display: block;
+    border: 1px solid black;
+    border-radius: 6px;
+    text-align: center;
+    background: dimgray;
+    flex: 1;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+  }
+
+  .item:hover {
+    background: black;
+  }
 }
