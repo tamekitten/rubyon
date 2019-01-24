@@ -8,4 +8,8 @@ class Post < ApplicationRecord
   has_many :estimators, through: :marks, source: :user
 
   validates :user, :body, presence: true
+
+  def self.all_by_moderators
+    Post.where(user: User.where(moderator: true))
+  end
 end
