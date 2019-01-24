@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
   belongs_to :user, counter_cache: true
-  belongs_to :post
+  belongs_to :commentable, polymorphic: true
 
-  validates :user, :post, :body, presence: true
+  validates :user, :body, presence: true
 end

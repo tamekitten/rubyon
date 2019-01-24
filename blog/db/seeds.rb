@@ -34,13 +34,14 @@ end
 
 Mark.create!(mark_hash.flatten)
 
-comment_hash = posts.select{|post| rand(2)==0}.map do |post|
-  users.sample(rand(1..3)).map do |user| {
-    post: post,
-    user: user,
-    body: FFaker::Tweet.body
+comment_hash = 300.times.map do
+  commentable = ((rand(2) == 1) ? posts : users).sample
+  {
+    user: users.sample,
+    body: FFaker::Tweet.body,
+    commentable_id: commentable.id,
+    commentable_type: commentable.class.to_s
   }
-  end
 end
 
-Comment.create!(comment_hash.flatten)
+Comment.create!(comment_hash)
