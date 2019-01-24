@@ -1,11 +1,9 @@
-Comment.destroy_all
-Mark.destroy_all
-Post.destroy_all
 User.destroy_all
 
 users_hash = 10.times.map do {
   name: FFaker::Internet.user_name,
   email: FFaker::Internet.safe_email,
+  moderator: (rand(3) == 1),
   creator: (rand(3) < 2)
   }
 end
