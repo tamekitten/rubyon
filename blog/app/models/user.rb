@@ -17,11 +17,11 @@ class User < ApplicationRecord
 private
 
   def log_before_destroy
-    Rails.logger.info "####### We are going to destroy user #{@name} #######"
+    Rails.logger.info "####### We are going to destroy user #{name} #######"
   end
 
   def log_after_destroy
-    Rails.logger.info "####### User #{@name} successfully destroyed #######"
+    Rails.logger.info "####### User #{name} successfully destroyed #######"
   end
 
 end
