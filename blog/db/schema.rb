@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2019_01_24_233622) do
     t.boolean "banned", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "comments_count"
-    t.integer "posts_count"
+    t.integer "comments_count", default: 0, null: false
+    t.integer "posts_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
   end
