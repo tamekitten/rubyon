@@ -2,17 +2,7 @@ h1 Our creators
 p Would you like to meet some people who have smth to say?
 p Lets make acquaintance.
 
-- @users.each do |user|
-  a[class="record" href=url_for(user)]
-    .desc
-      .name = user.name
-      p Email: #{user.email}
-      - if user.creator
-        p Count of posts: #{user.posts_count}
-      p Count of comments: #{user.comments_count}
-      - if user.moderator
-        p
-          b Moderator, be careful!
+= render partial: 'user', collection: @users
 
 br
 
