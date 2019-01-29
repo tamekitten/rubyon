@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.includes(:user).all
+    @posts = Post.includes(:user).page(params[:page]).per(5)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comments = @post.comments.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # GET /posts/new
