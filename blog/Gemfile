@@ -42,6 +42,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'ffaker'
+  gem 'letter_opener'
 end
 
 
@@ -50,3 +51,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'slim-rails'
 gem 'kaminari'
+gem 'devise'

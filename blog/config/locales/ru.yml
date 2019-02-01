@@ -1,0 +1,4 @@
+ru:
+  label:
+    log_in: Вход
+    hello: Привет, %s
