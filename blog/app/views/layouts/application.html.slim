@@ -24,8 +24,10 @@ html
           a href="#" 
             i.fab.fa-instagram
       .menu
-        a.item href=url_for(action: 'index')    Home
-        a.item href=url_for(action: 'about_me') About me
+        = link_to('Home', root_path, {class: "item"})
+        = link_to('Posts', posts_path, {class: "item"})
+        = link_to('Users', users_path, {class: "item"})
+        = link_to('About me', about_me_path, {class: "item"})
       = yield
     .footer
       .container

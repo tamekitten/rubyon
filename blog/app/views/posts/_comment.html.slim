@@ -1,0 +1,8 @@
+.listblock
+  .desc
+    p
+      = comment.body
+    p[class="meta"]
+      | Created by 
+      = link_to(comment.user.name, comment.user)
+      |  at #{comment.created_at}

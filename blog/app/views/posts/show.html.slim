@@ -1,0 +1,21 @@
+p#notice = notice
+
+h1 = @post.title
+
+.meta
+  | Created by 
+  = link_to(@post.user.name, user_path(@post.user))
+  |  at #{@post.created_at}
+
+.post = @post.body
+
+=> link_to 'Edit', edit_post_path(@post)
+'|
+=< link_to 'Back', posts_path
+
+h1 Comments
+
+= render partial: 'comment', collection: @comments
+
+p
+  = paginate @comments

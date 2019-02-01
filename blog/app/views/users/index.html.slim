@@ -1,0 +1,12 @@
+h1 Our creators
+p Would you like to meet some people who have smth to say?
+p Lets make acquaintance.
+
+= render partial: 'user', collection: @users
+
+br
+
+= link_to 'New User', new_user_path
+
+p
+  = paginate @users

@@ -1,0 +1,12 @@
+.listblock
+  .desc
+    .name = post.title
+    p
+      = post.body.lines.first
+    p
+      = link_to("Read more", post)
+      |  (#{post.comments_count} comments)
+    p[class="meta"]
+      | Created by 
+      = link_to(post.user.name, post.user)
+      |  at #{post.created_at}
