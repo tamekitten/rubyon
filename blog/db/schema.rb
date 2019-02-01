@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_182031) do
+ActiveRecord::Schema.define(version: 2019_02_01_173633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_182031) do
     t.datetime "updated_at", null: false
     t.string "seoable_type"
     t.bigint "seoable_id"
+    t.string "robots"
     t.index ["seoable_type", "seoable_id"], name: "index_seos_on_seoable_type_and_seoable_id"
   end
 

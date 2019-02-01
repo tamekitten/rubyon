@@ -2,7 +2,9 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title Blog
+    title = @title || @default_title
+    meta name='description' content=(@description || @default_description)
+    meta name='robots' content=(@robots || @default_robots)
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all'

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
+  before_action :set_default_seo
 
 private
 
@@ -16,5 +17,11 @@ private
 
   def default_url_options(options={})
     {locale: I18n.locale}.merge(options)
+  end
+
+  def set_default_seo
+    @default_title = Seo::DEFAULT_TITLE
+    @default_description = Seo::DEFAULT_DESCRIPTION
+    @default_robots = Seo::DEFAULT_ROBOTS
   end
 end

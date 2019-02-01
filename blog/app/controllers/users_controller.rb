@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_seo, only: [:show]
 
   # GET /users
   # GET /users.json
@@ -70,5 +71,13 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :moderator, :creator, :banned)
+    end
+
+    def set_seo
+      if @user.seo
+        @title = @user.seo.title
+        @description = @user.seo.description
+        @robots = @user.seo.robots
+      end
     end
 end
