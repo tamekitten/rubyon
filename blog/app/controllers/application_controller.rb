@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  prepend_view_path Rails.root.join('app/javascript')
+
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_locale
   before_action :set_default_seo
