@@ -30,4 +30,23 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title:
+    blog: Blog
+  label:
+    name: Name
+    log_in: Log in
+    log_out: Log out
+    hello: Hello, %s!
+    remember_me: Stay logged in
+    password: Password
+    sign_up: Sign up
+    forgot_password: Forgot your password?
+    min_length: min %s characters
+    password_confirmation: Password confirmation
+    send_reset_way: Send me reset instructions
+  menu:
+    home: Home
+    posts: Posts
+    users: Users
+    about_me: About me
+

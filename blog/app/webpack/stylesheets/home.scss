@@ -25,10 +25,10 @@ h1 {
   img {
     width: 200px;
   }
-}
 
-.record::after {
+  &::after {
     display: block;
     content: '';
     clear: both;
+  }
 }

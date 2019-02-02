@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale:/#{I18n.available_locales.join("|")}/ do
-    devise_for :users
+    devise_for :users, path: 'devise'
     resources :users
     resources :posts
     root 'home#index'

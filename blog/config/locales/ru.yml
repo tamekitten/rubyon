@@ -1,4 +1,21 @@
 ru:
+  title:
+    blog: Блог
   label:
+    name: Имя
     log_in: Вход
-    hello: Привет, %s
+    hello: Привет, %s!
+    remember_me: Запомнить меня
+    password: Пароль
+    log_in: Вход
+    log_out: Выход
+    sign_up: Зарегистрироваться
+    forgot_password: Забыли пароль?
+    min_length: минимум %s символов
+    password_confirmation: Подтверждение пароля
+    send_reset_way: Выслать инструкцию
+  menu:
+    home: Главная
+    posts: Блог
+    users: Пользователи
+    about_me: Обо мне
