@@ -15,7 +15,7 @@
  */
 @font-face {
     font-family: rw-extrabold;
-    src: url(font-path('Raleway-ExtraBold.ttf'));
+    src: url('../fonts/Raleway-ExtraBold.ttf');
 }
 
 html {
@@ -61,7 +61,7 @@ h1 {
 
 .header {
   height: 400px;
-  background: url(asset-path('cover.jpg')) no-repeat, #abeafa;
+  background: url('../images/cover.jpg') no-repeat, #abeafa;
   background-size: cover;
 
   .title {
@@ -110,36 +110,5 @@ h1 {
   .item:hover {
     background: black;
   }
-}
-
-.listblock {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  width: inherit;
-  background: silver;
-  border: 1px solid black;
-  border-radius: 6px;
-  margin-bottom: 30px;
-
-  .desc {
-    width: inherit;
-
-    .name {
-      font: 30px rw-extrabold, Raleway, sans-serif;
-      padding-bottom: 20px;
-    }
-  }
-}
-
-.listblock::after {
-    display: block;
-    content: '';
-    clear: both;
-}
-
-.meta {
-  text-align: right;
-  font-size: small;
 }
 
