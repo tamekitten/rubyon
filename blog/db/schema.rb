@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_01_173633) do
+ActiveRecord::Schema.define(version: 2019_02_05_085854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,20 @@ ActiveRecord::Schema.define(version: 2019_02_01_173633) do
     t.index ["post_id"], name: "index_marks_on_post_id"
     t.index ["user_id", "post_id"], name: "index_marks_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_marks_on_user_id"
+  end
+
+  create_table "oauths", force: :cascade do |t|
+    t.string "provider", null: false
+    t.bigint "user_id", null: false
+    t.string "uid", null: false
+    t.string "name"
+    t.string "location"
+    t.string "image_url"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_oauths_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_oauths_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -88,5 +102,6 @@ ActiveRecord::Schema.define(version: 2019_02_01_173633) do
   add_foreign_key "comments", "users"
   add_foreign_key "marks", "posts"
   add_foreign_key "marks", "users"
+  add_foreign_key "oauths", "users"
   add_foreign_key "posts", "users"
 end

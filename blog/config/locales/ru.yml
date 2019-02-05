@@ -1,8 +1,14 @@
 ru:
   title:
     blog: Блог
+    user_profile: Профиль %s
+    own_profile: Ваш профиль
+    edit_user: Редактирование профиля %s
+    edit_post: Редактирование поста
+    specials: Особенности
   label:
     name: Имя
+    email: Email
     log_in: Вход
     hello: Привет, %s!
     remember_me: Запомнить меня
@@ -14,8 +20,18 @@ ru:
     min_length: минимум %s символов
     password_confirmation: Подтверждение пароля
     send_reset_way: Выслать инструкцию
+    moderator: Модератор
+    creator: Создатель постов
+    banned: Забанен
+    update_user: Обновить профиль
+    title: Название
+    body: Содержание
+    visible: Виден всем
+    update_post: Обновить пост
   menu:
     home: Главная
     posts: Блог
     users: Пользователи
     about_me: Обо мне
+  exception:
+    permission_denied: У вас недостаточно прав.
