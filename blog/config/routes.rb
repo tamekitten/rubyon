@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
+
   scope "(:locale)", locale:/#{I18n.available_locales.join("|")}/ do
-    devise_for :users, path: 'devise'
+    devise_for :users, path: 'devise', skip: :omniauth_callbacks
+
     resources :users
     resources :posts
     root 'home#index'

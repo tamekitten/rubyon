@@ -6,19 +6,23 @@
         - @user.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :moderator
-    = f.check_box :moderator
-  .field
-    = f.label :creator
-    = f.check_box :creator
-  .field
-    = f.label :banned
-    = f.check_box :banned
-  .actions = f.submit
+  - if current_user == @user
+    .field
+      = f.label t('label.name')
+      = f.text_field :name
+    .field
+      = f.label :email
+      = f.text_field :email
+
+  - elsif current_user.moderator?
+    .field
+      = f.check_box :moderator
+      = f.label t('label.moderator')
+    .field
+      = f.check_box :creator
+      = f.label t('label.creator')
+    .field
+      = f.check_box :banned
+      = f.label t('label.banned')
+
+  .actions = f.submit t('label.update_user')

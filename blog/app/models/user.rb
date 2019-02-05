@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
+  devise :omniauthable, omniauth_providers: %i[facebook]
+
+  has_many :oauth, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :marks, dependent: :destroy
@@ -18,6 +21,30 @@ class User < ApplicationRecord
 
   before_destroy :log_before_destroy
   after_destroy :log_after_destroy
+
+  def self.from_omniauth(auth)
+    oauth = Oauth.find_by(uid: auth.uid, provider: auth.provider)
+
+    if !oauth
+      user = User.find_by(email: auth.info.email)
+      if !user
+        user = User.new(name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20])
+      end
+      user.skip_confirmation!
+
+      oauth = Oauth.create(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, location: auth.info.location, image_url: auth.info.picture, url: auth.info.link)
+    end
+
+    oauth.user
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      #if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+      #  user.email = data["email"] if user.email.blank?
+      #end
+    end
+  end
 
 private
 
