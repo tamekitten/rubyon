@@ -1,9 +1,6 @@
 h1 = t('title.edit_post')
 
-- if current_user == @post.user or current_user.moderator?
-  == render 'form', post: @post
-- else
-  p = t('exception.permission_denied')
+== render 'form', post: @post
 
 => link_to 'Show', @post
 '|

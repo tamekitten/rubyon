@@ -12,27 +12,26 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    authorize! :read, @user
   end
 
   # GET /users/1/edit
   def edit
+    authorize! :update, @user
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    authorize! :update, @user
+
     respond_to do |format|
-      if current_user == @post.user or current_user.moderator?
-        if @user.update(user_params)
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
-        format.html { redirect_to @user, notice: 'Permission denied.' }
-        format.json { render json: ['Permission denied.'], status: :unprocessable_entity }
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -40,16 +39,13 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    respond_to do |format|
-      if current_user == @post.user or current_user.moderator?
-        @user.destroy
+    authorize! :destroy, @user
 
-        format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to @user, notice: 'Permission denied.' }
-        format.json { render json: ['Permission denied.'], status: :unprocessable_entity }
-      end
+    respond_to do |format|
+      @user.destroy
+
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
@@ -61,10 +57,12 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      if current_user == @user
-        params.require(:user).permit(:name, :email)
-      elsif current_user.moderator?
-        params.require(:user).permit(:moderator, :creator, :banned)
+      if user_signed_in?
+        if current_user == @user
+          params.require(:user).permit(:name, :email)
+        elsif current_user.moderator?
+          params.require(:user).permit(:moderator, :creator, :banned)
+        end
       end
     end
 
