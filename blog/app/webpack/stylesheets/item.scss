@@ -1,0 +1,30 @@
+.listblock {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  width: inherit;
+  background: silver;
+  border: 1px solid black;
+  border-radius: 6px;
+  margin-bottom: 30px;
+
+  .desc {
+    width: inherit;
+
+    .name {
+      font: 30px rw-extrabold, Raleway, sans-serif;
+      padding-bottom: 20px;
+    }
+  }
+
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+.meta {
+  text-align: right;
+  font-size: small;
+}

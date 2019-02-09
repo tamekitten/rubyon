@@ -30,4 +30,38 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  title:
+    blog: Blog
+    user_profile: User %s
+    own_profile: Your profile
+    edit_user: Editing user %s
+    edit_post: Editing post
+    specials: Specials
+  label:
+    name: Name
+    email: Email
+    log_in: Log in
+    log_out: Log out
+    hello: Hello, %s!
+    remember_me: Stay logged in
+    password: Password
+    sign_up: Sign up
+    forgot_password: Forgot your password?
+    min_length: min %s characters
+    password_confirmation: Password confirmation
+    send_reset_way: Send me reset instructions
+    moderator: Moderator
+    creator: Creator
+    banned: Banned
+    update_user: Update user
+    title: Title
+    body: Body
+    visible: Visible
+    update_post: Update post
+  menu:
+    home: Home
+    posts: Posts
+    users: Users
+    about_me: About me
+  exception:
+    permission_denied: You don't have enough permissions.

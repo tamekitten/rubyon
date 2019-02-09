@@ -1,0 +1,30 @@
+.header
+  .title
+    = t('title.blog')
+  .social
+    = link_to user_facebook_omniauth_authorize_path
+      i.fab.fa-facebook-f
+    a href="#"
+      i.fab.fa-twitter
+    a href="#"
+      i.fab.fa-youtube
+    a href="#"
+      i.fab.fa-pinterest-p
+    a href="#"
+      i.fab.fa-instagram
+  .locale
+    = link_to "Ru", {locale: :ru}
+    = link_to "En", {locale: :en}
+  - if user_signed_in?
+    .welcome
+      = t('label.hello') % current_user.name
+
+.menu
+  = link_to t('menu.home'), root_path, {class: "item"}
+  = link_to t('menu.posts'), posts_path, {class: "item"}
+  = link_to t('menu.users'), users_path, {class: "item"}
+  = link_to t('menu.about_me'), about_me_path, {class: "item"}
+  - if user_signed_in?
+    = link_to t('label.log_out'), destroy_user_session_path, {class: "item"}
+  - else
+    = link_to t('label.log_in'), new_user_session_path, {class: "item"}

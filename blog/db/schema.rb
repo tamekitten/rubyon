@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_29_122141) do
+ActiveRecord::Schema.define(version: 2019_02_05_085854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,20 @@ ActiveRecord::Schema.define(version: 2019_01_29_122141) do
     t.index ["user_id"], name: "index_marks_on_user_id"
   end
 
+  create_table "oauths", force: :cascade do |t|
+    t.string "provider", null: false
+    t.bigint "user_id", null: false
+    t.string "uid", null: false
+    t.string "name"
+    t.string "location"
+    t.string "image_url"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_oauths_on_provider_and_uid", unique: true
+    t.index ["user_id"], name: "index_oauths_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body", null: false
@@ -57,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_01_29_122141) do
     t.datetime "updated_at", null: false
     t.string "seoable_type"
     t.bigint "seoable_id"
+    t.string "robots"
     t.index ["seoable_type", "seoable_id"], name: "index_seos_on_seoable_type_and_seoable_id"
   end
 
@@ -70,12 +85,23 @@ ActiveRecord::Schema.define(version: 2019_01_29_122141) do
     t.datetime "updated_at", null: false
     t.integer "comments_count", default: 0, null: false
     t.integer "posts_count", default: 0, null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "comments", "users"
   add_foreign_key "marks", "posts"
   add_foreign_key "marks", "users"
+  add_foreign_key "oauths", "users"
   add_foreign_key "posts", "users"
 end

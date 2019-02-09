@@ -2,33 +2,17 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    title Blog
+    title = @title || @default_title
+    meta name='description' content=(@description || @default_description)
+    meta name='robots' content=(@robots || @default_robots)
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_pack_tag 'stylesheets', media: 'all'
     link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" rel="stylesheet" /
-    = javascript_include_tag 'application'
+    = javascript_pack_tag 'application'
   body
     .container
-      .header
-        .title Blog
-        .social
-          a href="#" 
-            i.fab.fa-facebook-f
-          a href="#" 
-            i.fab.fa-twitter
-          a href="#" 
-            i.fab.fa-youtube
-          a href="#" 
-            i.fab.fa-pinterest-p
-          a href="#" 
-            i.fab.fa-instagram
-      .menu
-        = link_to('Home', root_path, {class: "item"})
-        = link_to('Posts', posts_path, {class: "item"})
-        = link_to('Users', users_path, {class: "item"})
-        = link_to('About me', about_me_path, {class: "item"})
+
+      = render 'shared/header'
       = yield
-    .footer
-      .container
-        p © RubyOn, 2019
+      = render 'shared/footer'

@@ -1,8 +1,11 @@
 User.destroy_all
 
-users_hash = 10.times.map do {
+users_hash = 10.times.map do
+  email = FFaker::Internet.safe_email
+  {
   name: FFaker::Internet.user_name,
-  email: FFaker::Internet.safe_email,
+  email: email,
+  password: email,
   moderator: (rand(3) == 1),
   creator: (rand(3) < 2)
   }
