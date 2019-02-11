@@ -22,27 +22,33 @@ class User < ApplicationRecord
   before_destroy :log_before_destroy
   after_destroy :log_after_destroy
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth, current_user)
+    $stderr.puts auth
     oauth = Oauth.find_by(uid: auth.uid, provider: auth.provider)
 
     if !oauth
-      user = User.find_by(email: auth.info.email)
-      if !user
-        user = User.new(name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20])
+      if not current_user.nil?
+        user = current_user
+      else
+        user = User.find_by(email: auth.info.email)
+        if !user
+          user = User.new(name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20])
+        end
+        #user.skip_confirmation!
       end
-      user.skip_confirmation!
 
-      oauth = Oauth.create(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, location: auth.info.location, image_url: auth.info.picture, url: auth.info.link)
+      oauth = Oauth.new(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, image_url: auth.info.image)
     end
 
-    oauth.user
+    oauth
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      #if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-      #  user.email = data["email"] if user.email.blank?
-      #end
+      if data = session["devise.facebook_data"]
+        user.email = data["info"]["email"] if user.email.blank?
+        user.name = data["info"]["name"] if user.name.blank?
+      end
     end
   end
 

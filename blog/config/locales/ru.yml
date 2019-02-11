@@ -35,3 +35,5 @@ ru:
     about_me: Обо мне
   exception:
     permission_denied: У вас недостаточно прав.
+  notice:
+    one_more_step: Остался последний шаг для регистрации через %s. Заполните недостающие поля.
