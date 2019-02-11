@@ -23,7 +23,7 @@ class User < ApplicationRecord
   after_destroy :log_after_destroy
 
   def self.from_omniauth(auth, current_user)
-    $stderr.puts auth
+    #$stderr.puts auth
     oauth = Oauth.find_by(uid: auth.uid, provider: auth.provider)
 
     if !oauth
@@ -37,7 +37,7 @@ class User < ApplicationRecord
         #user.skip_confirmation!
       end
 
-      oauth = Oauth.new(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, image_url: auth.info.image)
+      oauth = Oauth.new(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, email: auth.info.email, image_url: auth.info.image)
     end
 
     oauth
@@ -45,7 +45,7 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"]
+      if data = session["devise_facebook_data"] and session["devise_facebook_data"]["info"]
         user.email = data["info"]["email"] if user.email.blank?
         user.name = data["info"]["name"] if user.name.blank?
       end
