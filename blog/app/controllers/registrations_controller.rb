@@ -13,9 +13,7 @@ protected
         oauth.user = resource
       end
 
-      if oauth.changed?
-        oauth.save
-      end
+      oauth.save if oauth.changed?
     end
   end
 end

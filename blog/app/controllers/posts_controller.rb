@@ -19,9 +19,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
-    if user_signed_in?
-      @post.user = current_user
-    end
+    @post.user = current_user if user_signed_in?
     authorize! :create, @post
   end
 
@@ -34,9 +32,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-    if user_signed_in?
-      @post.user = current_user
-    end
+    @post.user = current_user if user_signed_in?
     authorize! :create, @post
 
     respond_to do |format|

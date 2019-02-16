@@ -27,15 +27,10 @@ class User < ApplicationRecord
     oauth = Oauth.find_by(uid: auth.uid, provider: auth.provider)
 
     if !oauth
-      if not current_user.nil?
-        user = current_user
-      else
-        user = User.find_by(email: auth.info.email)
-        if !user
-          user = User.new(name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20])
-        end
-        #user.skip_confirmation!
-      end
+      user = current_user if current_user
+      user = User.find_by(email: auth.info.email) if !user
+      user = User.new(name: auth.info.name, email: auth.info.email, password: Devise.friendly_token[0, 20]) if !user
+      #user.skip_confirmation!
 
       oauth = Oauth.new(uid: auth.uid, provider: auth.provider, user: user, name: auth.info.name, email: auth.info.email, image_url: auth.info.image)
     end
