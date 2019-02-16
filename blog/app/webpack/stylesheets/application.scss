@@ -15,7 +15,7 @@
  */
 @font-face {
     font-family: rw-extrabold;
-    src: url('../fonts/Raleway-ExtraBold.ttf');
+    src: url(font-path('Raleway-ExtraBold.ttf'));
 }
 
 html {
@@ -62,7 +62,7 @@ h1, h2 {
 .header {
   position: relative;
   height: 400px;
-  background: url('../images/cover.jpg') no-repeat, #abeafa;
+  background: url(asset-path('cover.jpg')) no-repeat, #abeafa;
   background-size: cover;
 
   .title {
