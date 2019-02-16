@@ -65,3 +65,5 @@ en:
     about_me: About me
   exception:
     permission_denied: You don't have enough permissions.
+  notice:
+    one_more_step: One more step to complete registration via %s. Fill empty fields.

@@ -1,9 +1,6 @@
 h1 = t('title.edit_user') % @user.name
 
-- if current_user == @user or current_user.moderator?
-  == render 'form'
-- else
-  p = t('exception.permission_denied')
+== render 'form'
 
 => link_to 'Show', @user
 '|

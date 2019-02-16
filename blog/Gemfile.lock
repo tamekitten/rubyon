@@ -51,6 +51,7 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    cancancan (2.3.0)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     devise (4.5.0)
@@ -222,6 +223,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
+  cancancan
   devise
   ffaker
   jbuilder (~> 2.5)
